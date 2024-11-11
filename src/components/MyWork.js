@@ -1,55 +1,62 @@
 import React from 'react';
 
+// import gfgIcon from 'https://media.geeksforgeeks.org/gfg-gg-logo.svg';
+import leetcodeIcon from '../assets/icons/lc.png';
+import hackerrankIcon from '../assets/icons/hr.png';
+// import codingNinjasIcon from 'https://files.codingninjas.in/new-cn-logos-1-1711622387.svg';
+import codeforcesIcon from '../assets/icons/cf.png';
+
 const projects = [
   {
     title: 'Project 1: Portfolio Website',
     description: 'A responsive portfolio website built using React and Tailwind CSS.',
-    link: 'https://github.com/kanchandasila/portfolio',
+    link: 'https://kanchan3d.github.io/Portfolio/',
   },
   {
     title: 'Project 2: E-commerce Store',
     description: 'A full-stack MERN application for an online store with user authentication and payment integration.',
-    link: 'https://github.com/kanchandasila/ecommerce-store',
+    link: 'https://kanchan3d.github.io/Portfolio/',
   },
   {
     title: 'Project 3: Blog App',
     description: 'A dynamic blog application using Node.js, Express, and MongoDB.',
-    link: 'https://github.com/kanchandasila/blog-app',
+    link: 'https://kanchan3d.github.io/Portfolio/',
   },
 ];
 
 const codingProfiles = [
-  {
-    platform: 'GitHub',
-    link: 'https://github.com/kanchandasila',
-    icon: 'https://cdn-icons-png.flaticon.com/512/25/25231.png', // GitHub logo
-  },
-  {
-    platform: 'LeetCode',
-    link: 'https://leetcode.com/kanchandasila',
-    icon: 'https://cdn-icons-png.flaticon.com/512/732/732212.png', // LeetCode logo
-  },
-  {
-    platform: 'HackerRank',
-    link: 'https://www.hackerrank.com/kanchandasila',
-    icon: 'https://static.cdnlogo.com/logos/h/58/hackerrank.svg', // HackerRank logo
-  },
-  {
-    platform: 'Coding Ninjas',
-    link: 'https://www.codingninjas.com/codestudio/profile/kanchandasila',
-    icon: 'https://upload.wikimedia.org/wikipedia/en/4/47/Coding_Ninjas_Logo.png', // Coding Ninjas logo
-  },
-  {
-    platform: 'Codeforces',
-    link: 'https://codeforces.com/profile/kanchandasila',
-    icon: 'https://sta.codeforces.com/s/19848/images/codeforces-logo-with-telegram.png', // Codeforces logo
-  },
-  {
-    platform: 'GeeksforGeeks',
-    link: 'https://auth.geeksforgeeks.org/user/kanchandasila',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg', // GeeksforGeeks logo
-  },
-];
+  
+    {
+      platform: 'GitHub',
+      link: 'https://github.com/kanchan3d',
+      icon: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
+    },
+    {
+      platform: 'GeeksforGeeks',
+      link: 'https://www.geeksforgeeks.org/user/kanchan3d/',
+      icon: 'https://media.geeksforgeeks.org/gfg-gg-logo.svg',
+    },
+    {
+      platform: 'LeetCode',
+      link: 'https://leetcode.com/u/Kanchan3D/',
+      icon: leetcodeIcon,
+    },
+    {
+      platform: 'HackerRank',
+      link: 'https://www.hackerrank.com/profile/kanchan_dasila1',
+      icon: hackerrankIcon,
+    },
+    {
+      platform: 'Coding Ninjas',
+      link: 'https://www.naukri.com/code360/profile/KanchanD',
+      icon: 'https://files.codingninjas.in/new-cn-logos-1-1711622387.svg',
+    },
+    {
+      platform: 'Codeforces',
+      link: 'https://codeforces.com/profile/kanchan_3d',
+      icon: codeforcesIcon,
+    },
+  ];
 
 const MyWork = () => {
   return (
