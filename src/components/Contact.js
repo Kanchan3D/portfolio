@@ -141,29 +141,33 @@
 // };
 
 // export default Contact;
-import React, { useState } from 'react';
-import { Card, Button, Form } from 'react-bootstrap';
-import { FaLinkedin, FaInstagram } from 'react-icons/fa';
-import emailjs from 'emailjs-com';
+import React, { useState } from "react";
+import { Card, Button, Form } from "react-bootstrap";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const contacts = [
     {
-      platform: 'LinkedIn',
-      handle: 'kanchan3',
+      platform: "LinkedIn",
+      handle: "kanchan3",
       icon: <FaLinkedin />,
-      link: 'https://www.linkedin.com/in/kanchan3/',
+      link: "https://www.linkedin.com/in/kanchan3/",
     },
     {
-      platform: 'Instagram',
-      handle: '@kancu_0',
+      platform: "Instagram",
+      handle: "@kancu_0",
       icon: <FaInstagram />,
-      link: 'https://instagram.com/kancu_0',
+      link: "https://instagram.com/kancu_0",
     },
   ];
 
   // State for form data and visibility
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [showForm, setShowForm] = useState(false);
 
   // Handle form field changes
@@ -184,18 +188,18 @@ const Contact = () => {
 
     emailjs
       .send(
-        'your_service_id', // replace with your service ID
-        'your_template_id', // replace with your template ID
+        "service_jfste8d", // replace with your service ID
+        "template_6hujcs1", // replace with your template ID
         templateParams,
-        'your_public_key' // replace with your user ID
+        "iWAsLN1RVWRfoTeos" // replace with your user ID
       )
       .then(
         () => {
-          alert('Message sent successfully!');
-          setFormData({ name: '', email: '', message: '' });
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
         },
         (error) => {
-          alert('Failed to send message, please try again.');
+          alert("Failed to send message, please try again.");
           console.error(error);
         }
       );
@@ -209,7 +213,9 @@ const Contact = () => {
       <div className="row d-flex justify-content-center">
         {contacts.map((contact, index) => (
           <div key={index} className="col-md-4 mb-4">
-            <Card className="h-100 shadow border-0 text-center" style={{ backgroundColor: '#343a40', color: '#f8f9fa' }}>
+            <Card
+              className="h-100 shadow border-0 text-center"
+              style={{ backgroundColor: "#343a40", color: "#f8f9fa" }}>
               <Card.Body>
                 <Card.Title>
                   {contact.icon} {contact.platform}
@@ -219,8 +225,7 @@ const Contact = () => {
                   variant="outline-light"
                   href={contact.link}
                   target="_blank"
-                  className="mt-3"
-                >
+                  className="mt-3">
                   Connect
                 </Button>
               </Card.Body>
@@ -232,13 +237,15 @@ const Contact = () => {
       {/* Button to show the form */}
       <div className="text-center mt-5">
         <Button variant="dark" onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Hide Form' : 'Message Me'}
+          {showForm ? "Hide Form" : "Message Me"}
         </Button>
       </div>
 
       {/* Conditionally render the form */}
       {showForm && (
-        <div className="card shadow-lg mt-5 p-4" style={{ backgroundColor: '#f8f9fa' }}>
+        <div
+          className="card shadow-lg mt-5 p-4"
+          style={{ backgroundColor: "#f8f9fa" }}>
           <h3 className="text-center">Send me a Message</h3>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-2">
