@@ -9,13 +9,17 @@ const Contact = () => {
       platform: "LinkedIn",
       handle: "kanchan3",
       icon: <FaLinkedin />,
+      pho:"https://media.licdn.com/dms/image/v2/D5603AQHaxFszNf2GOQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1668742306633?e=1746662400&v=beta&t=2CtWdewZ3ujed9PFsHZodTLzfCyH_ZHy_ZSfkB2O0-U",
       link: "https://www.linkedin.com/in/kanchan3/",
+      message: "Connect",
     },
     {
       platform: "Instagram",
       handle: "@kancu_0",
       icon: <FaInstagram />,
+      pho:"https://scontent.fdel27-5.fna.fbcdn.net/v/t39.30808-6/328694695_1976538472737885_403947757103046510_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=22gz77wKRvQQ7kNvgEQpoVv&_nc_oc=Adh0HRLp9gHHd6ix6Nl3CzZEm1f_kibLE1m7eFvbzBEFvQzTxP6n-cZ-jCCYMYPlQ74&_nc_zt=23&_nc_ht=scontent.fdel27-5.fna&_nc_gid=ArWH0rhYR8iFaCBLeuJnZmr&oh=00_AYCNPDEiOD6UayZt1Gq0flmfdPikGOSVWeJEG8znEQFk7Q&oe=67CF28C4",
       link: "https://instagram.com/kancu_0",
+      message: "Follow",
     },
   ];
 
@@ -77,13 +81,18 @@ const Contact = () => {
                 <Card.Title>
                   {contact.icon} {contact.platform}
                 </Card.Title>
+                <img
+                class="mx-auto block h-24 rounded-full sm:mx-0 sm:shrink-0"
+                src={contact.pho}
+                alt=""
+              />
                 <Card.Text className="mt-3">{contact.handle}</Card.Text>
                 <Button
                   variant="outline-light"
                   href={contact.link}
                   target="_blank"
-                  className="mt-3">
-                  Connect
+                  className=" mt-1f ">
+                  {contact.message}
                 </Button>
               </Card.Body>
             </Card>
