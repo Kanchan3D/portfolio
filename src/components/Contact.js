@@ -21,6 +21,14 @@ const Contact = () => {
       link: "https://instagram.com/kancu_0",
       message: "Follow",
     },
+    {
+      platform: "Facebook",
+      handle: "Kanchan Dasila",
+      icon: <FaInstagram />,
+      pho:"https://scontent.fdel27-5.fna.fbcdn.net/v/t39.30808-6/328694695_1976538472737885_403947757103046510_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=22gz77wKRvQQ7kNvgEQpoVv&_nc_oc=Adh0HRLp9gHHd6ix6Nl3CzZEm1f_kibLE1m7eFvbzBEFvQzTxP6n-cZ-jCCYMYPlQ74&_nc_zt=23&_nc_ht=scontent.fdel27-5.fna&_nc_gid=ArWH0rhYR8iFaCBLeuJnZmr&oh=00_AYCNPDEiOD6UayZt1Gq0flmfdPikGOSVWeJEG8znEQFk7Q&oe=67CF28C4",
+      link: "https://www.facebook.com/kkd333/",
+      message: "Follow",
+    },
   ];
 
   // State for form data and visibility

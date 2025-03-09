@@ -31,6 +31,12 @@ const projects = [
       "A UI application using Node.js to show user stats from LeetCode.",
     link: "https://kanchan3d.github.io/LeetMetric/",
   },
+  {
+    title: "Project 4: Online Voting System",
+    description:
+      "An online voting system using PHP.",
+    link: "http://kanchandasila3.fwh.is/",
+  },
 ];
 
 const codingProfiles = [
@@ -69,7 +75,7 @@ const codingProfiles = [
 const MyWork = () => {
   return (
     <div className="container mx-auto p-6">
-      <h3 className="text-2xl font-bold text-center mb-8">
+      <h3 className="text-2xl font-bold text-center">
         Find Me on Coding Platforms
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-center">
@@ -94,7 +100,7 @@ const MyWork = () => {
 
 
       
-      <h2 className="text-3xl font-bold text-center mt-12 ">My Work</h2>
+      <h2 className="text-3xl font-bold text-center mt-10 mb-3">My Work</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
           <div
