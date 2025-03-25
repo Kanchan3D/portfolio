@@ -18,8 +18,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+  "build": "vite build",
+  "serve": "vite preview",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
