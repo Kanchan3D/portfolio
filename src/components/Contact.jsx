@@ -90,7 +90,7 @@ const Contact = () => {
                   {contact.icon} {contact.platform}
                 </Card.Title>
                 <img
-                class="mx-auto block h-24 rounded-full sm:mx-0 sm:shrink-0"
+                className="mx-auto block h-24 rounded-full sm:mx-0 sm:shrink-0"
                 src={contact.pho}
                 alt=""
               />
