@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'; // Tailwind styles
-import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap (optional)
 import App from './App';
 
 // Import reportWebVitals if needed
