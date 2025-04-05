@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Card, Button, Form } from "react-bootstrap";
-import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
 const Contact = () => {
@@ -8,47 +8,36 @@ const Contact = () => {
     {
       platform: "LinkedIn",
       handle: "kanchan3",
-      icon: <FaLinkedin />,
-      pho:"https://media.licdn.com/dms/image/v2/D5603AQHaxFszNf2GOQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1668742306633?e=1746662400&v=beta&t=2CtWdewZ3ujed9PFsHZodTLzfCyH_ZHy_ZSfkB2O0-U",
-      link: "https://www.linkedin.com/in/kanchan3/",
+      icon: <FaLinkedin className="text-2xl" />,
       message: "Connect",
+      link: "https://www.linkedin.com/in/kanchan3/",
     },
     {
       platform: "Instagram",
       handle: "@kancu_0",
-      icon: <FaInstagram />,
-      pho:"https://scontent.fdel27-5.fna.fbcdn.net/v/t39.30808-6/328694695_1976538472737885_403947757103046510_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=22gz77wKRvQQ7kNvgEQpoVv&_nc_oc=Adh0HRLp9gHHd6ix6Nl3CzZEm1f_kibLE1m7eFvbzBEFvQzTxP6n-cZ-jCCYMYPlQ74&_nc_zt=23&_nc_ht=scontent.fdel27-5.fna&_nc_gid=ArWH0rhYR8iFaCBLeuJnZmr&oh=00_AYCNPDEiOD6UayZt1Gq0flmfdPikGOSVWeJEG8znEQFk7Q&oe=67CF28C4",
-      link: "https://instagram.com/kancu_0",
+      icon: <FaInstagram className="text-2xl" />,
       message: "Follow",
+      link: "https://www.instagram.com/kancu_0/",
     },
     {
       platform: "Facebook",
       handle: "Kanchan Dasila",
-      icon: <FaInstagram />,
-      pho:"https://scontent.fdel27-5.fna.fbcdn.net/v/t39.30808-6/328694695_1976538472737885_403947757103046510_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=22gz77wKRvQQ7kNvgEQpoVv&_nc_oc=Adh0HRLp9gHHd6ix6Nl3CzZEm1f_kibLE1m7eFvbzBEFvQzTxP6n-cZ-jCCYMYPlQ74&_nc_zt=23&_nc_ht=scontent.fdel27-5.fna&_nc_gid=ArWH0rhYR8iFaCBLeuJnZmr&oh=00_AYCNPDEiOD6UayZt1Gq0flmfdPikGOSVWeJEG8znEQFk7Q&oe=67CF28C4",
-      link: "https://www.facebook.com/kkd333/",
+      icon: <FaFacebook className="text-2xl" />,
       message: "Follow",
+      link: "https://www.facebook.com/",
     },
   ];
 
-  // State for form data and visibility
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [showForm, setShowForm] = useState(false);
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const templateParams = {
       to_name: formData.name,
       from_email: formData.email,
@@ -56,110 +45,117 @@ const Contact = () => {
     };
 
     emailjs
-      .send(
-        "service_jfste8d", // replace with your service ID
-        "template_6hujcs1", // replace with your template ID
-        templateParams,
-        "iWAsLN1RVWRfoTeos" // replace with your user ID
-      )
+      .send("service_jfste8d", "template_6hujcs1", templateParams, "iWAsLN1RVWRfoTeos")
       .then(
         () => {
-          alert("Message sent successfully!");
+          alert("Message sent successfully!😇");
           setFormData({ name: "", email: "", message: "" });
         },
         (error) => {
-          alert("Failed to send message, please try again.");
+          alert("Failed to send message, please try again.🥲");
           console.error(error);
         }
       );
   };
 
   return (
-    <div className="container my-5">
-      <h2 className="text-center mb-5">Let's Connect!</h2>
+    <motion.div
+      className="container mx-auto py-10 px-5"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-center text-3xl font-bold mb-6">Let's Connect!</h2>
 
-      {/* Social Media Cards */}
-      <div className="row d-flex justify-content-center">
+      <div className="flex flex-wrap justify-center gap-6">
         {contacts.map((contact, index) => (
-          <div key={index} className="col-md-4 mb-4">
-            <Card
-              className="h-100 shadow border-0 text-center"
-              style={{ backgroundColor: "#343a40", color: "#f8f9fa" }}>
-              <Card.Body>
-                <Card.Title>
-                  {contact.icon} {contact.platform}
-                </Card.Title>
-                <img
-                className="mx-auto block h-24 rounded-full sm:mx-0 sm:shrink-0"
-                src={contact.pho}
-                alt=""
-              />
-                <Card.Text className="mt-3">{contact.handle}</Card.Text>
-                <Button
-                  variant="outline-light"
-                  href={contact.link}
-                  target="_blank"
-                  className=" mt-1f ">
-                  {contact.message}
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
+          <motion.div
+            key={index}
+            className="bg-[#fafaf9] text-[#0c0a09] p-6 rounded-xl shadow-lg text-center w-64"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.2, duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="flex items-center justify-center gap-2 text-xl font-semibold">
+              {contact.icon} {contact.platform}
+            </div>
+            <p className="mt-2 text-[#eab308]">{contact.handle}</p>
+            <motion.a
+              href={contact.link}
+              target="_blank"
+              className="inline-block mt-3 px-4 py-2 border text-[#fff1f2] bg-[#22c55e] border-[#eab308] rounded-lg hover:bg-[#166534] hover:text-[#fff1f2] transition no-underline"
+              whileHover={{ scale: 1.1 }}
+            >
+              {contact.message}
+            </motion.a>
+          </motion.div>
         ))}
       </div>
 
-      {/* Button to show the form */}
-      <div className="text-center mt-5">
-        <Button variant="dark" onClick={() => setShowForm(!showForm)}>
+      <motion.div className="text-center mt-8" whileHover={{ scale: 1.1 }}>
+        <button className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-[#f97316]" onClick={() => setShowForm(!showForm)}>
           {showForm ? "Hide Form" : "Message Me"}
-        </Button>
-      </div>
+        </button>
+      </motion.div>
 
-      {/* Conditionally render the form */}
       {showForm && (
-        <div
-          className="card shadow-lg mt-5 p-4"
-          style={{ backgroundColor: "#f8f9fa" }}>
-          <h3 className="text-center">Send me a Message</h3>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-2">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
+        <motion.div
+          className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg mx-auto mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-center text-2xl font-semibold text-gray-900 mb-4">Send me a Message</h3>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-gray-700 font-medium">Name</label>
+              <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
               />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-medium">Email</label>
+              <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
               />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Message</Form.Label>
-              <Form.Control
-                as="textarea"
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-medium">Message</label>
+              <textarea
                 name="message"
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
               />
-            </Form.Group>
-            <Button variant="dark" type="submit">
-              Send Message
-            </Button>
-          </Form>
-        </div>
+            </div>
+
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <button
+                type="submit"
+                className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-[#4ade80] transition"
+              >
+                Send Message
+              </button>
+            </motion.div>
+          </form>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

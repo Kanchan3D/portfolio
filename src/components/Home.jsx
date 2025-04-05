@@ -1,23 +1,75 @@
-import React from "react";
-// import profileImage from "../profile2.JPG";
-import profileImage1 from "../assets/icons/profile1.jpeg";
+import { motion } from "framer-motion";
+import profileImage1 from "../assets/icons/pf2.png";
+import MyInfo from "./MyInfo";
 
 const Home = () => {
   return (
     <>
-    
-      <div className="flex flex-col items-center text-center">
-        {/* <img src={profileImage} class="img-fluid w-32 h-32" alt="..."></img> */}
-        <img
-          src={profileImage1}
-          alt="Kanchan Dasila"
-          // className="rounded-full w-32 h-32 md:w-48 md:h-48 mb-4 shadow-lg"
-          className="rounded-full w-32 h-32 md:w-48 md:h-48 mb-4 shadow-lg object-cover"
-        />
-        <h1 className="text-4xl font-bold mt-4">Kanchan Dasila</h1>
-        <p className="mt-2 text-lg text-gray-600">
-          Full Stack Web Developer specializing in modern web development.
-        </p>
+      <div className="flex flex-col pt-20 mt-20 md:flex-row justify-self-center min-h-screen space-y-8 md:space-y-0">
+        {/* Left Section - Text Content */}
+        <div className="mt-2 flex flex-col justify-items-center md:items-start text-center md:text-left max-w-xl md:w-2/3">
+          <motion.h1
+            className="text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}>
+            Welcome
+          </motion.h1>
+          <motion.p
+            className="text-3xl font-bold mt-4 text-[#0284c7]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}>
+            Hi, I'm{" "}
+            <span className="text-[#1d4ed8] hover:text-[#fda4af]">
+              Kanchan Dasila
+            </span>
+          </motion.p>
+          <motion.p
+            className="text-xl  text-[#0c0a09] font-semibold hover:text-[#52525b]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}>
+            A creative and driven <span className="text-[#c084fc] hover:text-[#ec4899]">Full-Stack Web Developer</span>, currently pursuing
+            B.Tech in CSE.&nbsp;
+            <span className="text-[#34d399] hover:text-[#fda4af]">Always exploring, learning</span>, and pushing  the
+            boundaries of technology.
+          </motion.p>
+          <MyInfo />
+          <div className="flex flex-col md:flex-row items-center justify-between md:justify-start mt-6 gap-5">
+
+          <motion.a
+            href="https://drive.google.com/file/d/1No9D7Xez-trjAlaVvTaMmOtEa6cfcie_/view?usp=sharing"
+            download
+            className="mt-6 px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-xl font-semibold transition-all duration-300 hover:bg-[#fca5a5] no-underline"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}>
+            Download My CV
+          </motion.a>
+          <motion.a
+            href="https://github.com/Kanchan3D" target="_blank"
+            className="mt-6 px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-xl font-semibold transition-all duration-300 hover:bg-[#4ade80] no-underline"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}>
+            Go to GitHub
+          </motion.a>
+              </div>
+        </div>
+
+        {/* Right Section - Profile Image */}
+        <motion.div
+          className="ml-10 flex flex-col items-center justify-items-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.7 }}>
+          <img
+            src={profileImage1}
+            alt="Kanchan Dasila"
+            className="rounded-full w-72 h-72 md:w-[28rem] md:h-[28rem] shadow-lg object-cover"
+          />
+        </motion.div>
       </div>
     </>
   );
