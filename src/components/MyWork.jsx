@@ -1,9 +1,11 @@
 import React from "react";
+import { motion } from "framer-motion";  
 import leetcodeIcon from "../assets/icons/lc.png";
 import hackerrankIcon from "../assets/icons/hr.png";
 import codeforcesIcon from "../assets/icons/cf.png";
 import "./MyInfo.css";
 
+// Projects Data
 const projects = [
   {
     title: "Learning Management System",
@@ -42,6 +44,7 @@ const projects = [
   },
 ];
 
+// Coding Profiles Data
 const codingProfiles = [
   {
     platform: "GitHub",
@@ -74,61 +77,133 @@ const codingProfiles = [
     icon: codeforcesIcon,
   },
 ];
+
+// Stagger Effect for Profiles
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, 
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const MyWork = () => {
   return (
-    <div className="container mx-auto p-6">
-      <h3 className="text-2xl pb-2 font-bold text-center">
-        Find Me on Coding Platforms
-      </h3>
+    <motion.div 
+      className="container mx-auto p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
+      {/* Animated Heading */}
+      <motion.h3 
+        className="text-2xl pb-2 font-bold text-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {Array.from("Find Me on Coding Platforms").map((letter, index) => (
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.h3>
 
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-8 justify-center">
+      {/* Coding Profiles Section */}
+      <motion.div 
+        className="grid grid-cols-2 md:grid-cols-6 gap-8 justify-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         {codingProfiles.map((profile, index) => (
-          <a
+          <motion.a
             key={index}
             href={profile.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white shadow-[#fecaca] shadow-md rounded-lg p-4 flex flex-col items-center border no-underline 
-      transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-2xl">
-            <img
+            className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center border no-underline"
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.img
               src={profile.icon}
               alt={`${profile.platform} icon`}
-              className="w-12 h-12 mb-4 transition-all duration-300 ease-in-out transform hover:scale-125"
+              className="w-12 h-12 mb-4"
+              animate={{ y: [0, -5, 0] }} 
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
             <span className="text-lg font-semibold text-gray-700 hover:text-[#f87171]">
               {profile.platform}
             </span>
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
 
-      <h2 className="text-3xl font-bold text-center mt-12 mb-3">Projects</h2>
+      {/* Animated Projects Title */}
+      <motion.h2 
+        className="text-3xl font-bold text-center mt-12 mb-3"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        Projects
+      </motion.h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Project Cards */}
+      <motion.div 
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        initial="hidden"
+        animate="show"
+        variants={containerVariants}
+      >
         {projects.map((project, index) => (
-          <div
+          <motion.div
             key={index}
-            className=" bg-white shadow-lg rounded-lg overflow-hidden border transition-all duration-300 ease-in-out 
-      transform hover:scale-105 hover:shadow-2xl">
-            <div className="p-6 shadow-[#fecaca]">
-              <h3 className="text-xl font-semibold transition-all duration-300 hover:text-[#f87171]">
+            className="bg-white shadow-lg rounded-lg overflow-hidden border"
+            variants={itemVariants}
+            initial={{ rotateY: 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            whileHover={{ scale: 1.05, rotateY: 5 }}
+          >
+            <div className="p-6">
+              <motion.h3 
+                className="text-xl font-semibold hover:text-[#f87171]"
+                whileHover={{ color: "#f87171" }}
+              >
                 {project.title}
-              </h3>
+              </motion.h3>
               <p className="text-gray-600 mt-2">{project.description}</p>
-              <a
+              <motion.a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-[#10b981] text-white mt-4 px-4 py-2 rounded 
-          hover:bg-[#ef4444] hover:scale-110 transition-all duration-300 ease-in-out no-underline bottom-1 right-1">
+                className="inline-block bg-[#10b981] text-white mt-4 px-4 py-2 rounded hover:bg-[#ef4444] transition-all duration-300 ease-in-out no-underline"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 View Project
-              </a>
+              </motion.a>
             </div>
-            
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
+
 export default MyWork;
