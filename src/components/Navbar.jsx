@@ -11,6 +11,7 @@ const MyNavbar = () => {
               { to: "/", label: "Home" },
               { to: "/about", label: "About" },
               { to: "/myWork", label: "My Work" },
+              { to: "/certification", label: "Certification" },
               { to: "/contact", label: "Contact" },
             ].map((item, index) => (
               <NavLink

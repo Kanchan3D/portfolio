@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
@@ -13,8 +13,15 @@ const Contact = () => {
       link: "https://www.linkedin.com/in/kanchan3/",
     },
     {
+      platform: "X",
+      handle: "kanchan3d",
+      icon: <FaTwitter className="text-2xl" />,
+      message: "Follow",
+      link: "https://x.com/kanchan3d",
+    },
+    {
       platform: "Instagram",
-      handle: "@kancu_0",
+      handle: "kancu_0",
       icon: <FaInstagram className="text-2xl" />,
       message: "Follow",
       link: "https://www.instagram.com/kancu_0/",
@@ -80,7 +87,7 @@ const Contact = () => {
             <div className="flex items-center justify-center gap-2 text-xl font-semibold">
               {contact.icon} {contact.platform}
             </div>
-            <p className="mt-2 text-[#eab308]">{contact.handle}</p>
+            <p className="mt-2 text-[#dda704]">{contact.handle}</p>
             <motion.a
               href={contact.link}
               target="_blank"

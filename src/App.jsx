@@ -6,6 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import MyWork from './components/MyWork';
+import Certification from './components/Certification';
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/myWork" element={<MyWork />} />
+          <Route path="/certification" element={<Certification />} />
         </Routes>
       </div>
     </div>

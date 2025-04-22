@@ -3,7 +3,14 @@ import { motion } from "framer-motion";
 import leetcodeIcon from "../assets/icons/lc.png";
 import hackerrankIcon from "../assets/icons/hr.png";
 import codeforcesIcon from "../assets/icons/cf.png";
+import lms from "../assets/project/lms.png";
+import ecom from "../assets/project/ecom.jpg";
+import vote from "../assets/project/Voting.jpg";
+import blogging from "../assets/project/blogging.jpg";
+import leetmetric from "../assets/project/leetmetric.png";
+import url from "../assets/project/url-shortener.jpg";
 import "./MyInfo.css";
+
 
 // Projects Data
 const projects = [
@@ -12,35 +19,41 @@ const projects = [
     description:
       "A responsive website built using MERN and Tailwind CSS. It includes a user-friendly interface for managing courses, students, and instructors.",
     link: "https://lms-kd.vercel.app/",
+    photo: lms,
   },
   {
     title: "URL Shortener",
     description:
       "A website built using MERN and Tailwind CSS. It allows users to shorten long URLs.",
     link: "https://short-url-kd.vercel.app/",
+    photo: url,
   },
   {
     title: "E-commerce Store",
     description:
       "A full-stack MERN application for an online store with user authentication and payment integration.",
     link: "https://kanchan3d.github.io/Portfolio/",
+    photo: ecom,
   },
   {
     title: "Blog App",
     description:
       "A dynamic blog application using Node.js, Express, and MongoDB.",
     link: "https://kanchan3d.github.io/Portfolio/",
+    photo: blogging,
   },
   {
     title: "LeetMetric",
     description:
       "A UI application using Node.js to show user stats from LeetCode.",
     link: "https://kanchan3d.github.io/LeetMetric/",
+    photo: leetmetric,
   },
   {
     title: "Online Voting System",
     description: "An online voting system using PHP.",
     link: "http://kanchandasila3.fwh.is/",
+    photo: vote,
   },
 ];
 
@@ -187,6 +200,7 @@ const MyWork = () => {
               >
                 {project.title}
               </motion.h3>
+              <img src={project.photo} alt="" className=" h-50"/>
               <p className="text-gray-600 mt-2">{project.description}</p>
               <motion.a
                 href={project.link}
