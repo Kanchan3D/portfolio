@@ -42,7 +42,7 @@ const Home = () => {
           <MyInfo />
           <div className="flex flex-col md:flex-row items-center justify-between md:justify-start mt-6 gap-5">
             <motion.a
-              href="https://drive.google.com/file/d/1No9D7Xez-trjAlaVvTaMmOtEa6cfcie_/view?usp=sharing"
+              href="https://drive.google.com/file/d/1yzdrXJG6MOCjmjz1-GzCCpPxSefCiVT3/view"
               download
               className="mt-6 px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-xl font-semibold transition-all duration-300 hover:bg-[#fca5a5] no-underline"
               initial={{ opacity: 0, scale: 0.8 }}
