@@ -1,7 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import profileImage from "../assets/icons/pf1.png";
+import school from "../assets/icons/school.jpeg";
 import Bio from "./Bio";
+import VideoCV from "./VideoCV";
+import Education from "./Education";
 
 const skillIcons = [
   { src: "https://skillicons.dev/icons?i=c", alt: "C" },
@@ -112,6 +115,8 @@ const About = () => {
           ))}
         </motion.div>
       </motion.div>
+      <Education/>
+      <VideoCV />
     </>
   );
 };
