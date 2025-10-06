@@ -3,12 +3,105 @@ import { useState } from "react";
 import profileImage1 from "../assets/icons/pf2.png";
 import profileImage2 from "../assets/icons/pft1.jpg";
 import MyInfo from "./MyInfo";
+import { FaExternalLinkAlt, FaPython, FaServer } from "react-icons/fa";
+import { SiDjango } from "react-icons/si";
 
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
+  const djangoPortfolioUrl = import.meta.env.VITE_DJANGO_PORTFOLIO_URL;
 
   return (
     <>
+      {/* Django Portfolio Banner */}
+      {showBanner && djangoPortfolioUrl && (
+        <motion.div
+          className="fixed top-20 left-0 right-0 z-40 mx-4 mt-4"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, type: "spring" }}
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-sm border-2 border-white/20">
+              <div className="relative p-4 md:p-5">
+                {/* Close Button */}
+                <button
+                  onClick={() => setShowBanner(false)}
+                  className="absolute top-3 right-3 text-white/80 hover:text-white hover:bg-white/20 rounded-full p-1.5 transition-all"
+                  aria-label="Close banner"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Banner Content */}
+                <div className="flex flex-col md:flex-row items-center gap-4 pr-8">
+                  {/* Icon Section */}
+                  <div className="flex items-center gap-2">
+                    <motion.div
+                      className="bg-white/20 backdrop-blur-md rounded-full p-3"
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    >
+                      <SiDjango className="text-3xl text-white" />
+                    </motion.div>
+                    <div className="hidden md:flex items-center gap-2">
+                      <FaPython className="text-2xl text-white/90" />
+                      <FaServer className="text-xl text-white/80" />
+                    </div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-white font-bold text-lg md:text-xl mb-1 flex items-center justify-center md:justify-start gap-2">
+                      <span className="animate-pulse">🚀</span>
+                      Check Out My Django Portfolio!
+                    </h3>
+                    <p className="text-white/90 text-sm md:text-base">
+                      Built with Django & MongoDB • Full Admin Panel • Dynamic Content Management
+                    </p>
+                  </div>
+
+                  {/* CTA Button */}
+                  <motion.a
+                    href={djangoPortfolioUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white text-green-600 px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:shadow-xl transition-all flex items-center gap-2 whitespace-nowrap no-underline"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Visit Django Site
+                    <FaExternalLinkAlt className="text-sm" />
+                  </motion.a>
+                </div>
+
+                {/* Animated Background Decoration */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <motion.div
+                    className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1.2, 1, 1.2],
+                      opacity: [0.5, 0.3, 0.5],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       <div className="flex flex-col pt-20 mt-20 md:flex-row justify-self-center min-h-screen space-y-8 md:space-y-0">
         {/* Left Section - Text Content */}
         <div className="mt-2 flex flex-col justify-items-center md:items-start text-center md:text-left max-w-xl md:w-2/3">
