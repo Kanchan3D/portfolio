@@ -1,5 +1,7 @@
 // API Service for Portfolio Backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+// Use relative path for Vercel deployment, fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:5001/api');
 
 class PortfolioAPI {
   // Fetch profile data
