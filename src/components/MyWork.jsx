@@ -1,63 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";  
+import { usePortfolio } from "../context/PortfolioContext";
 import leetcodeIcon from "../assets/icons/lc.png";
 import hackerrankIcon from "../assets/icons/hr.png";
 import codeforcesIcon from "../assets/icons/cf.png";
-import lms from "../assets/project/lms.png";
-import ecom from "../assets/project/ecom.jpg";
-import vote from "../assets/project/Voting.jpg";
-import blogging from "../assets/project/blogging.jpg";
-import leetmetric from "../assets/project/leetmetric.png";
-import url from "../assets/project/url-shortener.jpg";
 import "./MyInfo.css";
 
-
-// Projects Data
-const projects = [
-  {
-    title: "Learning Management System",
-    description:
-      "A responsive website built using MERN and Tailwind CSS. It includes a user-friendly interface for managing courses, students, and instructors.",
-    link: "https://lms-kd.vercel.app/",
-    photo: lms,
-  },
-  {
-    title: "URL Shortener",
-    description:
-      "A website built using MERN and Tailwind CSS. It allows users to shorten long URLs.",
-    link: "https://short-url-kd.vercel.app/",
-    photo: url,
-  },
-  {
-    title: "E-commerce Store",
-    description:
-      "A full-stack MERN application for an online store with user authentication and payment integration.",
-    link: "https://kanchan3d.github.io/Portfolio/",
-    photo: ecom,
-  },
-  {
-    title: "Blog App",
-    description:
-      "A dynamic blog application using Node.js, Express, and MongoDB.",
-    link: "https://kanchan3d.github.io/Portfolio/",
-    photo: blogging,
-  },
-  {
-    title: "LeetMetric",
-    description:
-      "A UI application using Node.js to show user stats from LeetCode.",
-    link: "https://kanchan3d.github.io/LeetMetric/",
-    photo: leetmetric,
-  },
-  {
-    title: "Online Voting System",
-    description: "An online voting system using PHP.",
-    link: "http://kanchandasila3.fwh.is/",
-    photo: vote,
-  },
-];
-
-// Coding Profiles Data
+// Coding Profiles Data (keeping static as these are external platforms)
 const codingProfiles = [
   {
     platform: "GitHub",
@@ -108,6 +57,8 @@ const itemVariants = {
 };
 
 const MyWork = () => {
+  const { projects, loading, error } = usePortfolio();
+
   return (
     <motion.div 
       className="container mx-auto p-6"
@@ -176,46 +127,114 @@ const MyWork = () => {
         Projects
       </motion.h2>
 
-      {/* Project Cards */}
-      <motion.div 
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        initial="hidden"
-        animate="show"
-        variants={containerVariants}
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            className="bg-white shadow-lg rounded-lg overflow-hidden border"
-            variants={itemVariants}
-            initial={{ rotateY: 90, opacity: 0 }}
-            animate={{ rotateY: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            whileHover={{ scale: 1.05, rotateY: 5 }}
-          >
-            <div className="p-6">
-              <motion.h3 
-                className="text-xl font-semibold hover:text-[#f87171]"
-                whileHover={{ color: "#f87171" }}
-              >
-                {project.title}
-              </motion.h3>
-              <img src={project.photo} alt="" className=" h-50"/>
-              <p className="text-gray-600 mt-2">{project.description}</p>
-              <motion.a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[#10b981] text-white mt-4 px-4 py-2 rounded hover:bg-[#ef4444] transition-all duration-300 ease-in-out no-underline"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                View Project
-              </motion.a>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* Loading State */}
+      {loading && (
+        <div className="flex justify-center items-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-xl text-gray-600">Loading projects from MongoDB...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && (
+        <div className="flex justify-center items-center py-20">
+          <div className="text-center max-w-md">
+            <i className="fas fa-exclamation-triangle text-6xl text-yellow-500 mb-4"></i>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Oops! Something went wrong</h2>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Project Cards - Data from MongoDB */}
+      {!loading && !error && projects && projects.length > 0 && (
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          animate="show"
+          variants={containerVariants}
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project._id || index}
+              className="bg-white shadow-lg rounded-lg overflow-hidden border"
+              variants={itemVariants}
+              initial={{ rotateY: 90, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+            >
+              {project.image_url && (
+                <img 
+                  src={project.image_url} 
+                  alt={project.title} 
+                  className="w-full h-48 object-cover"
+                />
+              )}
+              <div className="p-6">
+                <motion.h3 
+                  className="text-xl font-semibold hover:text-[#f87171]"
+                  whileHover={{ color: "#f87171" }}
+                >
+                  {project.title}
+                </motion.h3>
+                <p className="text-gray-600 mt-2">{project.description}</p>
+                
+                {project.technologies && (
+                  <p className="text-sm text-blue-600 mt-2">
+                    <strong>Tech:</strong> {project.technologies}
+                  </p>
+                )}
+                
+                <div className="flex gap-3 mt-4">
+                  {project.live_url && (
+                    <motion.a
+                      href={project.live_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-[#10b981] text-white px-4 py-2 rounded hover:bg-[#ef4444] transition-all duration-300 ease-in-out no-underline"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      View Project
+                    </motion.a>
+                  )}
+                  
+                  {project.github_url && (
+                    <motion.a
+                      href={project.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 transition-all duration-300 ease-in-out no-underline"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <i className="fab fa-github mr-2"></i>
+                      GitHub
+                    </motion.a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
+
+      {/* No Projects State */}
+      {!loading && !error && (!projects || projects.length === 0) && (
+        <div className="text-center py-20">
+          <i className="fas fa-code text-6xl text-gray-300 mb-4"></i>
+          <p className="text-gray-500 text-xl">No projects found.</p>
+          <p className="text-gray-400 text-sm mt-2">Add projects through Django admin to display them here!</p>
+        </div>
+      )}
     </motion.div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { PortfolioProvider } from './context/PortfolioContext';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -19,7 +20,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <PortfolioProvider>
   {/* Radial Gradient Background */}
   <div className="fixed inset-0 -z-10 h-full w-full bg-white">
   <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
@@ -30,7 +31,7 @@ const App = () => {
 
   {/* Main App */}
   <Router>
-    <div className={`flex flex-col min-h-screen pt-20 ${darkMode ? '' : ' text-gray-900'}`}>
+    <div className={`flex flex-col min-h-screen pt-16 ${darkMode ? '' : ' text-gray-900'}`}>
       <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />
       <div className="flex-grow">
         <Routes>
@@ -46,7 +47,7 @@ const App = () => {
     </div>
   </Router>
   
-</>
+</PortfolioProvider>
 
   );
 };
