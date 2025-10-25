@@ -1,21 +1,26 @@
 # Dependencies
 node_modules
-backend/node_modules
+frontend/node_modules
+backend-api/node_modules
+backend/
 
 # Environment files
 .env
 .env.local
 .env*.local
-backend/.env
+backend-api/.env
+frontend/.env.local
 
-# Build files
-backend/
+# Build files (except dist which Vercel needs)
+# backend/
 
 # Test files
-backend/test-connection.js
+backend-api/test-connection.js
 
 # Documentation
 djangoPortfolio/
+*.md
+!README.md
 
 # Git
 .git
@@ -34,3 +39,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Old structure (deprecated)
+backend/

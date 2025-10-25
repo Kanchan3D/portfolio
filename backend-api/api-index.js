@@ -24,7 +24,10 @@ async function connectToDatabase() {
     return cachedDb;
   }
 
-  const connection = await mongoose.connect(process.env.MONGODB_URI);
+  const connection = await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   cachedDb = connection;
   console.log('✅ Connected to MongoDB');
