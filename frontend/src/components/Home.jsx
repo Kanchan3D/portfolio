@@ -122,9 +122,9 @@ const Home = () => {
         </motion.div>
       )}
 
-      <div className="flex flex-col pt-6 md:pt-20 mt-8 md:mt-20 px-4 sm:px-6 lg:px-0 lg:flex-row justify-center items-center min-h-screen gap-4 md:gap-8">
+      <div className="flex flex-col pt-6 md:pt-20 mt-8 md:mt-20 md:flex-row justify-self-center min-h-screen space-y-8 md:space-y-0 px-4 sm:px-6 md:px-0">
         {/* Left Section - Text Content */}
-        <div className="w-full lg:w-2/3 flex flex-col justify-center text-center lg:text-left">
+        <div className="mt-2 flex flex-col justify-center text-center md:text-left max-w-xl md:w-2/3">
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
             initial={{ opacity: 0, y: -20 }}
@@ -133,7 +133,7 @@ const Home = () => {
             Welcome
           </motion.h1>
           <motion.p
-            className="text-2xl sm:text-3xl font-bold mt-4 text-[#0284c7]"
+            className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl font-bold mt-4 text-[#0284c7]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}>
@@ -143,7 +143,7 @@ const Home = () => {
             </span>
           </motion.p>
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-[#0c0a09] font-semibold hover:text-[#52525b] mt-3"
+            className="text-base sm:text-lg md:text-lg lg:text-xl text-[#0c0a09] font-semibold hover:text-[#52525b] mt-3"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}>
@@ -153,12 +153,12 @@ const Home = () => {
             boundaries of technology.
           </motion.p>
           <MyInfo />
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start mt-6 gap-3 sm:gap-5">
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start mt-6 gap-3 sm:gap-5">
             {!loading && cvUrl && (
               <motion.a
                 href={cvUrl}
                 download
-                className="w-full sm:w-auto px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-base sm:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-[#fca5a5] no-underline text-center"
+                className="w-full sm:w-auto px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-base sm:text-lg md:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-[#fca5a5] no-underline text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.7 }}>
@@ -172,7 +172,7 @@ const Home = () => {
             )}
             <motion.a
               href="https://github.com/Kanchan3D" target="_blank"
-              className="w-full sm:w-auto px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-base sm:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-[#4ade80] no-underline text-center"
+              className="w-full sm:w-auto px-6 py-3 text-[#1c1917] border-[#1c1917] border-2 rounded-lg text-base sm:text-lg md:text-lg lg:text-xl font-semibold transition-all duration-300 hover:bg-[#4ade80] no-underline text-center"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.7 }}>
@@ -183,7 +183,7 @@ const Home = () => {
 
         {/* Right Section - Profile Image with Flip Effect */}
         <motion.div
-          className="w-full lg:w-1/3 flex flex-col items-center justify-center relative mt-6 lg:mt-0"
+          className="ml-0 sm:ml-0 md:ml-10 flex flex-col items-center justify-center relative mt-6 md:mt-0"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.7 }}
@@ -193,7 +193,7 @@ const Home = () => {
           <motion.img
             src={isHovered ? profileImage2 : profileImage1}
             alt="Kanchan Dasila"
-            className="rounded-full w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 shadow-lg object-cover"
+            className="rounded-full w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 shadow-lg object-cover"
             animate={{ rotateY: isHovered ? 180 : 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           />
