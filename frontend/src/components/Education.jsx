@@ -52,7 +52,27 @@ const Education = () => {
           </p>
         </div>
 
-        {/* Timeline */}
+        {/* Mobile Timeline - Vertical dots */}
+        <div className="flex sm:hidden justify-center mb-8 overflow-x-auto">
+          <div className="flex flex-col items-center space-y-3">
+            {educationData.map((edu, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`w-10 h-10 rounded-full cursor-pointer transition-all flex items-center justify-center font-bold text-white ${
+                  activeIndex === index 
+                    ? "scale-125 shadow-lg" 
+                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+                }`}
+                style={activeIndex === index ? { backgroundColor: edu.color } : {}}
+              >
+                {educationData.length - index}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Timeline */}
         <div className="hidden md:flex justify-center mb-12">
           <div className="relative">
             <div className="absolute left-0 w-full h-1 bg-gray-200 top-4"></div>
@@ -82,22 +102,22 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Education Cards */}
-        <div className="grid md:grid-cols-1 gap-8">
+        {/* Education Cards - Mobile Responsive */}
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0">
           {educationData.map((edu, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 ${
+              className={`bg-white rounded-lg sm:rounded-xl shadow-lg md:shadow-xl overflow-hidden transform transition-all duration-500 ${
                 activeIndex === index 
-                  ? "scale-100 opacity-100 border-l-4" 
+                  ? "scale-100 opacity-100 border-l-4 md:border-l-8" 
                   : "md:scale-95 md:opacity-70"
               }`}
               style={activeIndex === index ? { borderLeftColor: edu.color } : {}}
               onMouseOver={() => setActiveIndex(index)}
             >
-              <div className="p-6 sm:p-8 flex flex-col sm:flex-row gap-6">
+              <div className="p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <div className="flex-shrink-0 flex items-start justify-center">
-                  <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 p-2 border border-gray-200 flex items-center justify-center">
+                  <div className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 rounded-lg overflow-hidden bg-gray-100 p-2 border border-gray-200 flex items-center justify-center">
                     <img
                       src={edu.logo}
                       alt={`${edu.institute} logo`}
@@ -108,7 +128,7 @@ const Education = () => {
                 
                 <div className="flex-grow">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <h3 className="text-2xl font-bold text-gray-800">{edu.institute}</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">{edu.institute}</h3>
                     <span 
                       className="inline-block px-3 py-1 text-xs font-medium rounded-full" 
                       style={{ backgroundColor: `${edu.color}20`, color: edu.color }}
@@ -117,9 +137,9 @@ const Education = () => {
                     </span>
                   </div>
                   
-                  <h4 className="text-xl font-semibold text-gray-700 mb-3">{edu.degree}</h4>
+                  <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-3">{edu.degree}</h4>
                   
-                  <p className="text-gray-600 mb-4">{edu.description}</p>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">{edu.description}</p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="flex items-center text-gray-600">

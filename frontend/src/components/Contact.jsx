@@ -45,6 +45,19 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate inputs
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      alert("Please fill in all fields");
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+    
     const templateParams = {
       to_name: formData.name,
       from_email: formData.email,
@@ -52,7 +65,12 @@ const Contact = () => {
     };
 
     emailjs
-      .send("service_jfste8d", "template_6hujcs1", templateParams, "iWAsLN1RVWRfoTeos")
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
       .then(
         () => {
           alert("Message sent successfully!😇");
@@ -67,32 +85,39 @@ const Contact = () => {
 
   return (
     <motion.div
-      className="container mx-auto py-10 px-5"
+      className="container mx-auto py-10 px-4 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-center text-3xl font-bold mb-6">Let's Connect!</h2>
+      <h2 className="text-center text-3xl sm:text-4xl font-bold mb-8">Let's Connect!</h2>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
         {contacts.map((contact, index) => (
           <motion.div
             key={index}
-            className="bg-[#fafaf9] text-[#0c0a09] p-6 rounded-xl shadow-lg text-center w-64"
+            className="bg-[#fafaf9] text-[#0c0a09] p-4 sm:p-6 rounded-xl shadow-lg text-center w-full sm:w-[calc(50%-12px)] md:w-64 lg:w-72"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.2, duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="flex items-center justify-center gap-2 text-xl font-semibold">
-              {contact.icon} {contact.platform}
+            <div className="text-4xl sm:text-5xl mb-3 flex justify-center">
+              {contact.icon}
             </div>
-            <p className="mt-2 text-[#dda704]">{contact.handle}</p>
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">
+              {contact.platform}
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-4">
+              {contact.handle}
+            </p>
             <motion.a
               href={contact.link}
               target="_blank"
-              className="inline-block mt-3 px-4 py-2 border text-[#fff1f2] bg-[#22c55e] border-[#eab308] rounded-lg hover:bg-[#166534] hover:text-[#fff1f2] transition no-underline"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-500 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium hover:bg-blue-600 transition-all no-underline"
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               {contact.message}
             </motion.a>
@@ -100,67 +125,75 @@ const Contact = () => {
         ))}
       </div>
 
-      <motion.div className="text-center mt-8" whileHover={{ scale: 1.1 }}>
-        <button className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-[#f97316]" onClick={() => setShowForm(!showForm)}>
+      <motion.div className="text-center mt-8 sm:mt-12" whileHover={{ scale: 1.05 }}>
+        <button 
+          className="bg-gray-900 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg text-base sm:text-lg hover:bg-[#f97316] transition-all font-medium" 
+          onClick={() => setShowForm(!showForm)}
+        >
           {showForm ? "Hide Form" : "Message Me"}
         </button>
       </motion.div>
 
       {showForm && (
-        <motion.div
-          className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg mx-auto mt-10"
+        <motion.form
+          onSubmit={handleSubmit}
+          className="max-w-2xl mx-auto mt-8 sm:mt-10 px-4 sm:px-6 bg-white rounded-2xl shadow-2xl p-6 sm:p-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-center text-2xl font-semibold text-gray-900 mb-4">Send me a Message</h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <h3 className="text-center text-2xl sm:text-3xl font-semibold text-gray-900 mb-6">Send me a Message</h3>
+          <div className="space-y-4">
             <div>
-              <label className="block text-gray-700 font-medium">Name</label>
+              <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Name</label>
               <input
                 type="text"
                 name="name"
+                placeholder="Your Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full px-4 py-2 sm:py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-base"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium">Email</label>
+              <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Email</label>
               <input
                 type="email"
                 name="email"
+                placeholder="Your Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full px-4 py-2 sm:py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-base"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium">Message</label>
+              <label className="block text-gray-700 font-medium text-sm sm:text-base mb-2">Message</label>
               <textarea
                 name="message"
-                rows={4}
+                placeholder="Your Message"
+                rows={5}
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 transition"
+                className="w-full px-4 py-2 sm:py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-base resize-none"
               />
             </div>
 
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <button
-                type="submit"
-                className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-[#4ade80] transition"
-              >
-                Send Message
-              </button>
-            </motion.div>
-          </form>
-        </motion.div>
+            <motion.button
+              type="submit"
+              className="w-full sm:w-auto bg-blue-500 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-600 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleSubmit}
+            >
+              Send Message
+            </motion.button>
+          </div>
+        </motion.form>
       )}
     </motion.div>
   );

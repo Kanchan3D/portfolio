@@ -81,7 +81,7 @@ const About = () => {
 
         {/* Skills Grid */}
         <motion.div
-          className="w-[70%] mx-auto flex flex-wrap justify-center gap-2"
+          className="w-full md:w-[90%] lg:w-[80%] mx-auto px-4 flex flex-wrap justify-center gap-2 sm:gap-3"
           initial="hidden"
           animate="visible"
           variants={{

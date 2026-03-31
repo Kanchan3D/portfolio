@@ -61,14 +61,14 @@ const MyWork = () => {
 
   return (
     <motion.div 
-      className="container mx-auto p-6"
+      className="container mx-auto p-4 sm:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
       {/* Animated Heading */}
       <motion.h3 
-        className="text-2xl pb-2 font-bold text-center"
+        className="text-xl sm:text-2xl pb-2 font-bold text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -87,7 +87,7 @@ const MyWork = () => {
 
       {/* Coding Profiles Section */}
       <motion.div 
-        className="grid grid-cols-2 md:grid-cols-6 gap-8 justify-center"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 lg:gap-8 justify-center px-2 sm:px-0"
         variants={containerVariants}
         initial="hidden"
         animate="show"
@@ -98,7 +98,7 @@ const MyWork = () => {
             href={profile.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center border no-underline"
+            className="bg-white shadow-md rounded-lg p-3 sm:p-4 flex flex-col items-center border hover:shadow-lg transition-all"
             variants={itemVariants}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -106,11 +106,11 @@ const MyWork = () => {
             <motion.img
               src={profile.icon}
               alt={`${profile.platform} icon`}
-              className="w-12 h-12 mb-4"
+              className="w-8 sm:w-10 md:w-12 mb-2 sm:mb-4"
               animate={{ y: [0, -5, 0] }} 
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
-            <span className="text-lg font-semibold text-gray-700 hover:text-[#f87171]">
+            <span className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-700 hover:text-[#f87171] text-center">
               {profile.platform}
             </span>
           </motion.a>
@@ -156,7 +156,7 @@ const MyWork = () => {
       {/* Project Cards - Data from MongoDB */}
       {!loading && !error && projects && projects.length > 0 && (
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0"
           initial="hidden"
           animate="show"
           variants={containerVariants}
@@ -164,7 +164,7 @@ const MyWork = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project._id || index}
-              className="bg-white shadow-lg rounded-lg overflow-hidden border"
+              className="bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-xl transition-all"
               variants={itemVariants}
               initial={{ rotateY: 90, opacity: 0 }}
               animate={{ rotateY: 0, opacity: 1 }}
@@ -175,7 +175,7 @@ const MyWork = () => {
                 <img 
                   src={project.image_url} 
                   alt={project.title} 
-                  className="w-full h-48 object-cover"
+                  className="w-full h-40 sm:h-48 object-cover"
                 />
               )}
               <div className="p-6">
